@@ -142,11 +142,11 @@ function connect() {
     connection.onerror = function (error) {
         addMessage("WebLogger", "WebSocket error");
         disconnect();
-        ip_input.innerText = "localhost:3000";
     };
 
     connection.onclose = function (event) {
         addMessage("WebLogger", "WebSocket connection closed");
+        disconnect();
     }
 
     connection.onopen = function (event) {
