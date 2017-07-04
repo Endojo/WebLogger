@@ -115,33 +115,52 @@ function clearLog() {
 }
 
 
-var connection = 0;
+var connection = null;
 
 function disconnect() {
     connection.close();
-    connection = 0;
+    connection = null;
 
     document.getElementById("menu_toggleConnect").classList.remove("active");
     document.getElementById("menu_toggleConnect").innerText = "Connect";
 }
 
 function connect() {
-    connection = new WebSocket("ws://localhost:3000");
+    //get the ip adress
+    var ip_input = document.getElementById("ip");
+
+    try {
+        connection = new WebSocket("ws://" + ip_input.innerText);
+    }
+    catch (err) {
+        //not a valid url
+        ip_input.innerText = "localhost:3000";
+        return;
+    }
 
     // Log errors
     connection.onerror = function (error) {
-        console.log('WebSocket Error ' + error);
+        addMessage("WebLogger", "WebSocket error");
         disconnect();
+        ip_input.innerText = "localhost:3000";
     };
+
+    connection.onclose = function (event) {
+        addMessage("WebLogger", "WebSocket connection closed");
+    }
+
+    connection.onopen = function (event) {
+        addMessage("WebLogger", "WebSocket connection opened");
+    }
 
     // Log messages from the server
     connection.onmessage = function (e) {
         var first = e.data.indexOf("|");
-        var second = e.data.indexOf("|", first+1);
+        var second = e.data.indexOf("|", first + 1);
 
         var time = e.data.substring(0, first);
-        var lvl = e.data.substring(first+1, second);
-        var msg = e.data.substring(second+1);
+        var lvl = e.data.substring(first + 1, second);
+        var msg = e.data.substring(second + 1);
 
         addMessage(lvl, msg, parseInt(time));
     };
@@ -152,10 +171,20 @@ function connect() {
 
 
 function toggleConnect() {
-    if (connection == 0)
+    if (connection == null)
         connect();
     else
         disconnect();
+}
+
+function ipInput(event)
+{
+    if (event.which == 13) {
+        event.preventDefault();
+        if (connection != null)
+            disconnect();
+        connect();
+    }
 }
 
 function getRandomInt(min, max) {

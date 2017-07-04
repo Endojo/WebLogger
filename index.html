@@ -8,12 +8,17 @@
 </head>
 
 <body>
-    
+
     <script src="script.js"></script>
 
     <ul>
         <li class="logo">Web Logger</li>
-        <li><a id="menu_toggleConnect" onclick="toggleConnect()" href="#0">Connect</a></li>
+        <li class="dropdown">
+            <a id="menu_toggleConnect" onclick="toggleConnect()" href="#0" class="dropbtn">Connect</a>
+            <div class="dropdown-content" style="right:0">
+                <a id="ip" onkeydown="ipInput(event)" contenteditable="true" href="#">localhost:3000</a>
+            </div>
+        </li>
         <li><a onclick="logRandom()" href="#0">Test</a></li>
         <li><a id="menu_clear" onclick="clearLog()" href="#0">Clear</a></li>
         <li class="dropdown">
