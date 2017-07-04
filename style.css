@@ -1,0 +1,111 @@
+
+    body {
+        margin: 0;
+        margin-top: 60px;
+        color: #251605;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #CE0002;
+        font-family: Arial, Helvetica, sans-serif;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    li {
+        float: right;
+        font-size: larger;
+        vertical-align: middle;
+    }
+
+    .logo {
+        float: left;
+        display: block;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: xx-large;
+        padding: 14px 16px;
+        text-decoration: none;
+        line-height: 28px;
+    }
+
+    li a {
+        display: block;
+        color: #FFFFFF;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        line-height: 28px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: fixed;
+        background-color: #CE0002;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .active {
+        background-color: #9FAB43;
+    }
+
+    li a:hover:not(.logo):not(.active) {
+        background-color: #A10123;
+    }
+
+    li a:hover.active {
+        background-color: #9FAB43;
+    }
+
+    table {
+        border-collapse: collapse;
+        display: table;
+        width: 100%;
+    }
+
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+        padding: 1em;
+        border-bottom: solid 1px #251605;
+        background-color: #FFFFFF;
+    }
+
+    th.min {
+        width: 1%;
+        white-space: nowrap;
+    }
+
+    td {
+        font-family: monospace;
+        border-left: solid 1px #251605;
+        text-align: center;
+        padding-right: 5px;
+    }
+
+    td:nth-child(3) {
+        text-align: left;
+        padding-left: 5px;
+    }
+
+    td:first-child {
+        border-left: none;
+    }
+
+    tr:nth-child(even) {
+        background-color: #FFFFFF;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #F0F0F0;
+    }
